@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>選擇你想看的股票 </title>
+        <style>
+            table, th, td{
+                border: 1px solid black;
+            }
+            body {
+                background-color:#FFB90F;
+                background-size:2000px 1000px;
+                background-repeat: no-repeat;
+                background-attachment:scroll;
+            }
+            h1 {
+            font-family:Microsoft JhengHei;
+            color: PaleGreen4;
+            text-align: center;
+
+            }
+            input[type=text]:focus {
+                border: 3px solid #555;
+                width: 25%;
+                text-align: center;
+            }
+            input[type=text]:focus {
+                border-bottom: 2px solid red;
+                -webkit-transition: width 0.4s ease-in-out;
+                transition: width 0.4s ease-in-out;
+            }
+            input[type=submit] {
+                background-color: #00CED1;
+                border: none;
+                color: black;
+                padding: 10px 16px;
+                text-decoration: none;
+                margin: 4px 2px;
+                cursor: pointer;
+            }
+           form {
+            /* set width in form, not fieldset (still takes up more room w/ fieldset width */
+            margin: auto;
+            min-width: 500px;
+            max-width: 600px;
+            }
+            
+        </style>
+    </head>
+    <body 
+    background-size: contain;
+    >
+
+<button onclick="getElementById('demo').innerHTML=Date()">現在即時時間</button>
+
+<p id="demo"></p>
+
+        <h1>股票搜尋系統</h1>
+        <h2 style="text-align: center" >搜尋您想要看的即時股價資訊</h2>
+        <form action="/real_stock/" method="get"   >
+            
+            <label for="stock_name">你想找的股票</label>
+            <input id="stock_name" type="text" name="stock_name">
+            <input type="submit" value="顯示">
+        </form>
+
+        <select onChange="location = this.options[this.selectedIndex].value;">
+            {% load static %}
+            <option value="#">請選擇你要看的股票走勢圖</option>
+            <option value="{% static 'image/1108_years.png' %}">幸福水泥股份有限公司</option>
+            <option value="{% static 'image/1201_years.png'%}">味全食品工業股份有限公司</option>
+            <option value="{% static 'image/1234_years.png' %}">黑松股份有限公司</option>
+            <option value="{% static 'image/1604_years.png' %}">聲寶股份有限公司</option>
+            <option value="{% static 'image/2886_years.png' %}">兆豐金融控股</option>
+            <option value="{% static 'image/2887_years.png' %}">台新金融控股</option>
+            <option value="{% static 'image/2890_years.png' %}">永豐金融控股股份有限公司</option>
+            <option value="{% static 'image/2892_years.png' %}">第一金融控股</option>
+            <option value="{% static 'image/3045_years.png' %}">台灣大哥大股份有限公司</option>
+            <option value="{% static 'image/5876_years.png' %}">上海商業儲蓄銀行</option>            
+
+        </select>
+        <h2 style="text-align: center">股票列表</h2>
+        <form action="/show_stock/" method="get" >
+        <table width="500" height="500">
+            <tr>
+                
+                <th>選取</th>
+                <th>股票代號</th>
+                <th>股票全名</th>
+            </tr>
+            {% for r in r1 %}
+                <tr>
+                    <td> <input type="radio" name="id" value="{{r.id}}"> </td>
+                    <td> {{r.name}} </td>
+                    <td> {{r.fullname}} </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="觀看資訊">
+        </form>
+        <h1 style="text-align: center" >組員：</h1>
+        <h2 style="text-align: center" >陳睿澤</h2>
+        <h2 style="text-align: center" >張孝全</h2>
+        <h2 style="text-align: center" >賴濰凱</h2>
+        <h2 style="text-align: center" >張棋閔</h2>
+        <h2 style="text-align: center" >吳宥俞</h2>
+
+
+
+      
+    </body>
+</html>
